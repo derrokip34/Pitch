@@ -1,0 +1,18 @@
+{% macro displayPitches(pitches_list) %}
+
+    {% for pitch in pitches_list %}
+        <div class="col-md-4">
+            <div class="card card-image" style="background-color: orange;">
+            <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+            <div>
+                <h5 class="pink-text"><i class="fas fa-chart-pie"></i>{{pitch.pitch_title|capitalize}}</h5>
+                <h3 class="card-title pt-2"><strong></strong></h3>
+                <p>{{pitch.pitch_content}}</p>
+                <a class="btn btn-orange"><i class="fas fa-clone left"></i> View pitch</a>
+            </div>
+            </div>
+            </div>
+                    </div>
+    {% endfor %}
+
+{% endmacro %}

@@ -8,7 +8,15 @@ from flask_login import login_required
 @main.route('/')
 def index():
 
-    return render_template('index.html')
+    interview_pitches = Pitch.get_pitches('interview')
+    product_pitches = Pitch.get_pitches('product')
+    promotion_pitches = Pitch.get_pitches('promotion')
+    movie_pitch = Pitch.get_pitches('movie')
+    education_pitches = Pitch.get_pitches('education')
+
+    title = 'Welcome to Pitch ideas'
+
+    return render_template('index.html',title=title,interview=interview_pitches,product=product_pitches,promotion=promotion_pitches,movie=movie_pitch,education=education_pitches)
 
 @main.route('/pitch/new', methods = ['GET','POST'])
 @login_required

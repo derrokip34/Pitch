@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macro %}
 
 {% block content %}
 <div class="jumbotron text-center hoverable p-4">
@@ -20,4 +21,13 @@
       </div>
     </div>
   </div><br>
+  <hr>
+  <div class="row">
+      <div class="col-md-1"></div>
+      {{ macro.displayPitches(movie) }}
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    {{ macro.displayPitches(interview) }}
+</div>
 {% endblock %}
