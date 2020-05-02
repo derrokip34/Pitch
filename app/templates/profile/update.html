@@ -4,6 +4,13 @@
 {% block content %}
 <hr>
 <div class="container">
-    {{wtf.quick_form(update)}}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            {{wtf.quick_form(update)}}
+            <hr>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 </div>
 {% endblock %}
