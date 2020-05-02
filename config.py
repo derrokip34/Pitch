@@ -1,7 +1,9 @@
 import os
 
 class Config():
-    pass
+    SECRET_KEY = 'derrokip34'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://derrick:montolivo@localhost/pitch'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProdConfig(Config):
 
