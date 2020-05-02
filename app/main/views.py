@@ -1,8 +1,8 @@
-from flask import render_template,redirect,url_for
+from flask import render_template,redirect,url_for,abort
 from . import main
 from .. import db
 from .forms import PitchForm
-from ..models import Pitch
+from ..models import Pitch,User
 from flask_login import login_required
 
 @main.route('/')
@@ -23,3 +23,12 @@ def new_pitch():
         return redirect(url_for('.index'))
 
     return render_template('new_pitch.html', form = form)
+
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username=uname).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template('profile/profile.html',user=user)
