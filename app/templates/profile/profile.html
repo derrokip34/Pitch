@@ -25,5 +25,13 @@
             <h3>{{user.username| capitalize}}</h3>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            {% if user == current_user %}
+                <a class="btn blue-gradient btn-rounded" href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}
