@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-cascade" style="height: 200px;">
+                <div class="view view-cascade gradient-card-header blue-gradient">
+                  <h2 class="card-header-title mb-3 text-center">{{pitch.pitch_title|capitalize}}</h2>
+                  <p class="card-header-subtitle mb-0 text-center">Category: {{pitch.category|capitalize}}</p>
+                </div>
+                <div class="card-body card-body-cascade text-center">
+                  <p class="card-text">{{pitch.pitch_content}}</p>
+                  <hr>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
