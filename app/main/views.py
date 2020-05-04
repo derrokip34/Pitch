@@ -8,15 +8,11 @@ from flask_login import login_required
 @main.route('/')
 def index():
 
-    interview_pitches = Pitch.get_pitches('interview')
-    product_pitches = Pitch.get_pitches('product')
-    promotion_pitches = Pitch.get_pitches('promotion')
-    movie_pitch = Pitch.get_pitches('movie')
-    education_pitches = Pitch.get_pitches('education')
+    pitches = Pitch.get_pitches()
 
     title = 'Welcome to Pitch ideas'
 
-    return render_template('index.html',title=title,interview=interview_pitches,product=product_pitches,promotion=promotion_pitches,movie=movie_pitch,education=education_pitches)
+    return render_template('index.html',title=title,pitches=pitches)
 
 @main.route('/pitch/new', methods = ['GET','POST'])
 @login_required
@@ -71,3 +67,9 @@ def update_pic(uname):
         user.pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+@main.route('/pitch/<int:id>')
+def pitch(id):
+    pitch = Pitch.get_pitch(id)
+
+    return render_template('pitch.html',pitch=pitch)
