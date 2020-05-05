@@ -3,16 +3,14 @@ from . import main
 from .. import db,photos
 from .forms import PitchForm,UpdateForm
 from ..models import Pitch,User
-from flask_login import login_required
+from flask_login import login_required,current_user
 
 @main.route('/')
 def index():
 
-    pitches = Pitch.get_pitches()
-
     title = 'Welcome to Pitch ideas'
 
-    return render_template('index.html',title=title,pitches=pitches)
+    return render_template('index.html',title=title)
 
 @main.route('/pitch/new', methods = ['GET','POST'])
 @login_required
@@ -20,9 +18,13 @@ def new_pitch():
     form = PitchForm()
 
     if form.validate_on_submit():
-        pitch = Pitch(pitch_title = form.pitch_title.data, pitch_content = form.pitch_content.data,category = form.category.data)
-        db.session.add(pitch)
-        db.session.commit()
+        title = form.pitch_title.data
+        pitch = form.pitch_content.data
+        category = form.category.data
+
+        new_pitch = Pitch(pitch_title=title,pitch_content=pitch,category=category,user=current_user)
+
+        new_pitch.save_pitch()
 
         return redirect(url_for('.index'))
 
@@ -73,3 +75,9 @@ def pitch(id):
     pitch = Pitch.get_pitch(id)
 
     return render_template('pitch.html',pitch=pitch)
+
+@main.route('/<uname>/pitches')
+def user_pitches(uname):
+    pitches = Pitch.get_user_pitches(uname)
+
+    return render_template('pitches.html',pitches=pitches)

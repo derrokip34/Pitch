@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for pitch in pitches %}
+    <div class="col-md-4">
+    <div class="card card-image mb3" style="background-color: orange;">
+    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+        <h5 class="pink-text"><i class="fas fa-chart-pie"></i>{{pitch.pitch_title|capitalize}}</h5>
+        <h3 class="card-title pt-2"><strong></strong></h3>
+        <p>{{pitch.pitch_content}}</p>
+        <a href="/pitch/{{pitch.id}}" class="btn btn-orange"><i class="fas fa-clone left"></i> View pitch</a>
+    </div>
+    </div>
+    </div>
+    </div>
+    {% endfor %}
+{% endblock %}

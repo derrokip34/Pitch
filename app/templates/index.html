@@ -12,25 +12,25 @@
         </div>
       </div>
       <div class="col-md-7 text-md-left ml-3 mt-3">
-        <h6 class="h6 pb-1"><i class="far fa-lightbulb"></i>  PITCH</h6></a>
-        <h4 class="h4 mb-4">Welcome to Pith</h4>
+        <h6 class="h6 pb-1 green-text"><i class="far fa-lightbulb"></i>  PITCH</h6></a>
+        <h4 class="h4 mb-4">Welcome to Pitch</h4>
         <p class="font-weight-normal">In life, you only have 60 seconds to impress someone. 1 minute can make or break you. How do we make sure that you use your 1 minute to actually say something meaningful?</p>
       </div>
     </div>
   </div>
   {% for pitch in pitches %}
-  <div class="col-md-4">
-    <div class="card card-image" style="background-color: orange;">
-    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-    <div>
-        <h5 class="pink-text"><i class="fas fa-chart-pie"></i>{{pitch.pitch_title|capitalize}}</h5>
-        <h3 class="card-title pt-2"><strong></strong></h3>
-        <p>{{pitch.pitch_content}}</p>
-        <a href="/pitch/{{pitch.id}}" class="btn btn-orange"><i class="fas fa-clone left"></i> View pitch</a>
-    </div>
-    </div>
-    </div>
-</div>
+    <div class="col-md-4">
+      <div class="card card-image mb3" style="background-color: orange;">
+      <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+      <div>
+          <h5 class="pink-text"><i class="fas fa-chart-pie"></i>{{pitch.pitch_title|capitalize}}</h5>
+          <h3 class="card-title pt-2"><strong></strong></h3>
+          <p>{{pitch.pitch_content}}</p>
+          <a href="/pitch/{{pitch.id}}" class="btn btn-orange"><i class="fas fa-clone left"></i> View pitch</a>
+      </div>
+      </div>
+      </div>
+  </div>
   {% endfor %}
 
 </div>
