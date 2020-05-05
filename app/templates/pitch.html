@@ -9,10 +9,12 @@
                 <div class="view view-cascade gradient-card-header blue-gradient">
                   <h2 class="card-header-title mb-3 text-center">{{pitch.pitch_title|capitalize}}</h2>
                   <p class="card-header-subtitle mb-0 text-center">Category: {{pitch.category|capitalize}}</p>
+                  <hr>
                 </div>
                 <div class="card-body card-body-cascade text-center">
                   <p class="card-text">{{pitch.pitch_content}}</p>
                   <hr>
+                  <a href="/pitch/{{pitch.id}}/comment">Comment</a>
                 </div>
               </div>
         </div>

@@ -1,8 +1,8 @@
 from flask import render_template,redirect,url_for,abort,request
 from . import main
 from .. import db,photos
-from .forms import PitchForm,UpdateForm
-from ..models import Pitch,User
+from .forms import PitchForm,UpdateForm,CommentForm
+from ..models import Pitch,User,Comments
 from flask_login import login_required,current_user
 
 @main.route('/')
@@ -81,3 +81,19 @@ def user_pitches(uname):
     pitches = Pitch.get_user_pitches(uname)
 
     return render_template('pitches.html',pitches=pitches)
+
+@main.route('/pitch/<int:id>/comment',methods=["GET","POST"])
+@login_required
+def comment(id):
+    pitch = Pitch.get_pitch(id)
+    comment_form = CommentForm()
+
+    if comment_form.validate_on_submit():
+        comment=comment_form.comments.data
+
+        new_comment = Comments(comment=comment,review=pitch,user=current_user)
+        new_comment.save_comment()
+
+        return redirect(url_for('.pitch',id=pitch.id))
+
+    return render_template('comment.html',comment_form=comment_form)
