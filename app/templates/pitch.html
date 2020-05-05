@@ -4,19 +4,28 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
-            <div class="card card-cascade" style="height: 200px;">
+        <div class="col-md-5">
+            <div class="card card-cascade">
                 <div class="view view-cascade gradient-card-header blue-gradient">
                   <h2 class="card-header-title mb-3 text-center">{{pitch.pitch_title|capitalize}}</h2>
                   <p class="card-header-subtitle mb-0 text-center">Category: {{pitch.category|capitalize}}</p>
-                  <hr>
                 </div>
                 <div class="card-body card-body-cascade text-center">
                   <p class="card-text">{{pitch.pitch_content}}</p>
+                  <p>Posted by {{current_user.username}}</p>
                   <hr>
-                  <a href="/pitch/{{pitch.id}}/comment">Comment</a>
+                  <a class="btn btn-rounded" href="/pitch/{{pitch.id}}/comment">Comment</a>
                 </div>
               </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+          <h2>COMMENTS</h2>
+          <hr>
+          {% for comment in comments %}
+          <h4><a href="/user/{{comment.user.username}}">{{comment.user.username}}:</a></h4>
+          <p>{{comment.comment}}</p>
+          {% endfor %}
         </div>
     </div>
 </div>

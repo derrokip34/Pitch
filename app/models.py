@@ -79,5 +79,5 @@ class Comments(db.Model):
 
     @classmethod
     def get_comments(cls,pitch):
-        comments = Comments.query.filter_by(pitch_id=pitch).all()
+        comments = Comments.query.filter_by(pitch=pitch.id).all()
         return comments

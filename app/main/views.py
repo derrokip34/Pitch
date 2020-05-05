@@ -74,7 +74,9 @@ def update_pic(uname):
 def pitch(id):
     pitch = Pitch.get_pitch(id)
 
-    return render_template('pitch.html',pitch=pitch)
+    comments = Comments.get_comments(pitch)
+
+    return render_template('pitch.html',pitch=pitch,comments=comments)
 
 @main.route('/<uname>/pitches')
 def user_pitches(uname):
