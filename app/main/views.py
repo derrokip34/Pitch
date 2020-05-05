@@ -22,7 +22,7 @@ def new_pitch():
         pitch = form.pitch_content.data
         category = form.category.data
 
-        new_pitch = Pitch(pitch_title=title,pitch_content=pitch,category=category,user=current_user)
+        new_pitch = Pitch(pitch_title=title,pitch_content=pitch,category=category,user=current_user,likes=0,dislike=0)
 
         new_pitch.save_pitch()
 
@@ -70,9 +70,25 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
-@main.route('/pitch/<int:id>')
+@main.route('/pitch/<int:id>',methods=["GET","POST"])
 def pitch(id):
     pitch = Pitch.get_pitch(id)
+
+    if request.args.get("like"):
+        pitch.likes = pitch.likes + 1
+
+        db.session.add(pitch)
+        db.session.commit()
+
+        return redirect(url_for('.pitch',id=pitch.id))
+
+    elif request.args.get("dislike"):
+        pitch.dislikes = pitch.dislikes + 1
+
+        db.session.add(pitch)
+        db.session.commit()
+
+        return redirect(url_for('.pitch',id=pitch.id))
 
     comments = Comments.get_comments(pitch)
 
