@@ -1,6 +1,6 @@
-{% macro displayPitches(pitches_list) %}
+{% macro displayPitches(pitches) %}
 
-    {% for pitch in pitches_list %}
+    {% for pitch in pitches %}
         <div class="col-md-4">
             <div class="card card-image" style="background-color: orange;">
             <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
@@ -12,7 +12,7 @@
             </div>
             </div>
             </div>
-                    </div>
+        </div>
     {% endfor %}
 
 {% endmacro %}

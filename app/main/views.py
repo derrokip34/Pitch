@@ -1,7 +1,7 @@
 from flask import render_template,redirect,url_for,abort,request
 from . import main
 from .. import db,photos
-from .forms import PitchForm,UpdateForm,CommentForm
+from .forms import PitchForm,UpdateForm,CommentForm,RequestForm,ResetForm
 from ..models import Pitch,User,Comments
 from flask_login import login_required,current_user
 
@@ -73,6 +73,8 @@ def update_pic(uname):
 @main.route('/pitch/<int:id>',methods=["GET","POST"])
 def pitch(id):
     pitch = Pitch.get_pitch(id)
+    
+   
 
     if request.args.get("like"):
         pitch.likes = pitch.likes + 1

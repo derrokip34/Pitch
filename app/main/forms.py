@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,SubmitField,TextAreaField,SelectField
-from wtforms.validators import Required
+from wtforms import StringField,SubmitField,TextAreaField,SelectField,PasswordField
+from wtforms.validators import Required,Email,EqualTo
 
 class PitchForm(FlaskForm):
     pitch_title = StringField('Pitch title', validators=[Required()])
@@ -15,3 +15,12 @@ class UpdateForm(FlaskForm):
 class CommentForm(FlaskForm):
     comments = TextAreaField('Leave a comment below',validators=[Required()])
     submit = SubmitField('Submit your comment')
+
+class RequestForm(FlaskForm):
+    email = StringField('Your Email Address',validators=[Required(),Email()])
+    submit = SubmitField('Request password reset')
+
+class ResetForm(FlaskForm):
+    password = PasswordField('Password', validators=[Required()])
+    confirm_password = PasswordField('Confirm Password',validators=[Required(),EqualTo('password')])
+    submit = SubmitField('Reset Password')

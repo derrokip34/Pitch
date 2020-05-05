@@ -1,0 +1,4 @@
+.vote {
+    display: flex;
+    justify-content: space-between;
+}
