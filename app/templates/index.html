@@ -19,11 +19,12 @@
       </div>
     </div>
   </div>
+  {% if pitches %}
+  {% for pitch in pitches %}
   <div class="row">
     <div class="col-md-12"><h1 style="text-align: center;">HERE ARE SOME IDEAS POSTED</h1></div>
   </div>
-  <div class="row">
-  {% for pitch in pitches %}
+  <div class="row"></div>
         <div class="col-md-4">
           <div class="card card-image mb3" style="background-color: orange;">
           <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
@@ -39,6 +40,9 @@
           </div>
         </div>
     {% endfor %}
+    {% else %}
+    <h1 style="text-align: center;">NO PITCHES</h1>
+    {% endif %}
   </div>
   <hr>
 </div>

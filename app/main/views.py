@@ -24,7 +24,7 @@ def new_pitch():
         pitch = form.pitch_content.data
         category = form.category.data
 
-        new_pitch = Pitch(pitch_title=title,pitch_content=pitch,category=category,user=current_user,likes=0,dislike=0)
+        new_pitch = Pitch(pitch_title=title,pitch_content=pitch,category=category,user=current_user,likes=0,dislikes=0)
 
         new_pitch.save_pitch()
 
@@ -119,3 +119,14 @@ def comment(id):
         return redirect(url_for('.pitch',id=pitch.id))
 
     return render_template('comment.html',comment_form=comment_form)
+
+@main.route('/pitch/<int:id>/delete',methods=["GET","POST"])
+@login_required
+def delete_pitch(id):
+    pitch = Pitch.query.get(id)
+    if pitch.user != current_user:
+        abort(403)
+    db.session.delete(pitch)
+    db.session.commit()
+
+    return redirect(url_for('.index'))
