@@ -8,9 +8,11 @@ from flask_login import login_required,current_user
 @main.route('/')
 def index():
 
+    pitches = Pitch.query.all()
+
     title = 'Welcome to Pitch ideas'
 
-    return render_template('index.html',title=title)
+    return render_template('index.html',title=title,pitches=pitches)
 
 @main.route('/pitch/new', methods = ['GET','POST'])
 @login_required
