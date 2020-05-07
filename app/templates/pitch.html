@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body card-body-cascade text-center">
                   <p class="card-text">{{pitch.pitch_content}}</p>
-                  <p>Posted by {{current_user.username}}</p>
+                  <p>Posted by {{pitch.user.username}}</p>
                   <hr>
                   <a class="btn btn-rounded" href="/pitch/{{pitch.id}}/comment">Comment</a>
                   <div style="display: flex;justify-content: space-between;padding: 30px;">
